@@ -29,8 +29,8 @@ const App = () => {
       const isLocal = process.env.NODE_ENV === "development";
 
       const API_URL = isLocal
-        ? `http://localhost:8888/.netlify/functions/omdbProxy` // Adjust the port if needed
-        : `http://www.omdbapi.com/?i=tt3896198&apikey=YOUR_API_KEY`;
+        ? `http://localhost:8888/.netlify/functions/omdbProxy`
+        : `http://www.omdbapi.com/?i=tt3896198&apikey=4c32c503`;
 
       const response = await fetch(`${API_URL}&s=${title}&page=${page}`);
 
