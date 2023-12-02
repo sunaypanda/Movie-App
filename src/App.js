@@ -4,8 +4,8 @@ import MovieCard from "./MovieCard";
 import SearchIcon from "./search_icon_img.png";
 import "./App.css";
 
-//const API_URL = "http://www.omdbapi.com/?i=tt3896198&apikey=4c32c503";
-//const API_URL = "/.netlify/functions/omdbProxy";
+const API_URL = "http://www.omdbapi.com/?i=tt3896198&apikey=4c32c503";
+// const API_URL = "/.netlify/functions/omdbProxy";
 
 const MOVIES_PER_PAGE = 6;
 
@@ -26,15 +26,9 @@ const App = () => {
     let fetchedMovies = [];
 
     while (fetchedMovies.length < 60 && page <= 10) {
-      const isLocal = process.env.NODE_ENV === "development";
-
-      const API_URL = isLocal
-        ? `http://localhost:8888/.netlify/functions/omdbProxy`
-        : `http://www.omdbapi.com/?i=tt3896198&apikey=4c32c503`;
+      //const isLocal = process.env.NODE_ENV === "development";
 
       const response = await fetch(`${API_URL}&s=${title}&page=${page}`);
-
-      // const response = await fetch(`${API_URL}&s=${title}&page=${page}`);
       const data = await response.json();
 
       if (data.Search) {

@@ -1,30 +1,27 @@
+// omdbProxy.js
+
 const fetch = require("node-fetch");
 
-exports.handler = async (event, context) => {
-  console.log("Function invoked");
-
+exports.handler = async function (event, context) {
   try {
-    const { searchTerm, page, sortOrder } = JSON.parse(event.body);
+    const { title, page } = event.queryStringParameters;
+    console.log(`Fetching data for title: ${title}, page: ${page}`);
 
-    const apiUrl = `http://www.omdbapi.com/?i=tt3896198&apikey=${process.env.OMDB_API_KEY}&s=${title}&page=${page}`;
+    const API_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=4c32c503&s=${title}&page=${page}`;
+    console.log(`API URL: ${API_URL}`);
 
-    try {
-      const response = await fetch(API_URL);
-      const data = await response.json();
+    const response = await fetch(API_URL);
+    const data = await response.json();
 
-      return {
-        statusCode: 200,
-        body: JSON.stringify(data),
-      };
-    } catch (error) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: "Internal Server Error" }),
-      };
-    }
-    console.log("Function code executed");
+    console.log("Data received:", data);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(data),
+    };
   } catch (error) {
-    console.error("Error in function:", error);
+    console.error("Error:", error);
+
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Internal Server Error" }),
