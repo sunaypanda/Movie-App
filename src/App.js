@@ -4,7 +4,7 @@ import MovieCard from "./MovieCard";
 import SearchIcon from "./search_icon_img.png";
 import "./App.css";
 
-const API_URL = "http://www.omdbapi.com/?i=tt3896198&apikey=4c32c503";
+const API_URL = "https://www.omdbapi.com/?i=tt3896198&apikey=4c32c503";
 // const API_URL = "/.netlify/functions/omdbProxy";
 
 const MOVIES_PER_PAGE = 6;
