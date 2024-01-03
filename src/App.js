@@ -93,19 +93,25 @@ const App = () => {
   return (
     <div className="app">
       <h1>FilmBase</h1>
-
-      <div className="search-bar">
-        <div className="search">
-          <input
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search"
-          />
-        </div>
+      <div className="search_bar">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSearchClick();
+          }}
+        >
+          <div className="search">
+            <input
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search"
+            />
+          </div>
+        </form>
         <img
           src={SearchIcon}
           alt="search"
-          className="search-icon"
+          className="search_icon"
           onClick={handleSearchClick}
         />
         <div className="sort">
@@ -129,7 +135,7 @@ const App = () => {
                 <MovieCard key={movie?.imdbID} movie={movie} />
               ))}
           </div>
-          <div className="pagination">{renderPageButtons()}</div>
+          <div className="pages">{renderPageButtons()}</div>
         </>
       ) : (
         <div className="empty">
